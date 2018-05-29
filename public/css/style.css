@@ -1,0 +1,24 @@
+html, .container {
+  background-color: black !important;
+  border-color: black;
+  color: yellow; }
+
+.cr-Yes {
+  color: red !important; }
+
+.cr-No {
+  color: yellow; }
+
+.btn-danger .btn {
+  color: yellow; }
+
+.central {
+  width: 50%;
+  margin-left: 25%; }
+
+.form-control, .form-control:focus {
+  background-color: black;
+  border-color: yellow;
+  color: yellow; }
+
+/*# sourceMappingURL=style.css.map */

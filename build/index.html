@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fuel Rats Case Jump Calculator</title>
+    <link rel="stylesheet" href="../public/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../public/css/style.css">
+    <script src="../bower_components/angular/angular.min.js"></script>
+    <script src="../public/js/index.js"></script>
+
+</head>
+<body ng-app="FRJump" ng-controller="frjController" class="container">
+
+    <div class="central form-inline">
+        <label for="jump-range" ><strong>Jump Range: </strong></label>
+        <input class="form-control" type="" ngMin="1" ng-model="jumpRange" ng-change="reCalcJumps()" id="jump-range">
+        <p><strong>Current System: </strong><span ng-bind="ratSystem"></span></p>
+    </div>
+    <ul class="row">
+        <li ng-repeat="case in cases track by $index" class="col-md-4 col-lg-3 cr-{{case.caseRed}}">
+            <p><strong>Board Index: </strong>#{{case.boardIndex}}<span ng-if="case.platformUnknown === true"><strong>  WARNING: PLATFORM UNKNOWN</strong></span></p>
+            <p><strong>Client Name: </strong>{{case.clientNick}}</p>
+            <p><strong>Client System: </strong>{{case.clientSystem}}</p>
+            <p><strong>Distance To Client:  </strong>{{case.distance}}</p>
+            <p><strong>Jumps To Client: </strong>{{case.jumps}}</p>
+            <p><strong>Case Red: </strong><span>{{case.caseRed}}</span></p>
+        </li>
+    </ul>
+
+
+
+
+</body>
+</html>
