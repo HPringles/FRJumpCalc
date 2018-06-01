@@ -125,11 +125,10 @@ angular.module('FRJump', [])
 
 
         watcher.on('data', obs => {
-            console.log("log data recieved")
+
             obs.forEach((ob) => {
                 try {
 
-                console.log(ob)
                 if (ob.event === "FSDJump" || ob.event === "Location") {
                     $timeout(() => {
                         $scope.ratSystem = ob.StarSystem
@@ -210,7 +209,6 @@ angular.module('FRJump', [])
                         let caseJsonData = jsonData.data[index]
                         // console.log("processing data: " + JSON.stringify(caseJsonData))
 
-
                         let caseData = {
                             caseID: caseJsonData.id,
                             clientNick: caseJsonData.attributes.data.IRCNick,
@@ -221,11 +219,12 @@ angular.module('FRJump', [])
                             numJumps: undefined,
                             distance: undefined,
                             systemDefined: undefined,
-                            platformUnknown: undefined
+                            platformUnknown: undefined,
+                            ratsAssigned: caseJsonData.relationships.rats.data? caseJsonData.relationships.rats.data.length : 0
 
                         }
 
-                        if (caseJsonData.attributes.platform !== 'pc' && caseJsonData.attributes.platform !== null) {
+                    if (caseJsonData.attributes.platform !== 'pc' && caseJsonData.attributes.platform !== null) {
                             let caseIndex = $scope.cases.findIndex((obj) => {
                                 if (obj.caseID === caseData.caseID) {
                                     return true
@@ -292,9 +291,8 @@ angular.module('FRJump', [])
 
                                 } else {
                                     $timeout(() => {
-                                        caseData.clientSysData = response
+                                     caseData.clientSysData = response
                                     });
-
                                     getSysInfo(ratSystem).then((response) => {
                                         if (!response.found) {
                                             caseData.systemDefined = false

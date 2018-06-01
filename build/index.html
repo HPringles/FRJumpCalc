@@ -16,14 +16,17 @@
         <input class="form-control" type="" ngMin="1" ng-model="jumpRange" ng-change="reCalcJumps()" id="jump-range">
         <p><strong>Current System: </strong><span ng-bind="ratSystem"></span></p>
     </div>
+    <div class="blue text-center display-4" ng-show="cases.length === 0">No Cases Found</div>
+    
     <ul class="row">
-        <li ng-repeat="case in cases track by $index" class="col-md-4 col-lg-3 cr-{{case.caseRed}}">
+        <li ng-repeat="case in cases track by $index" class="col-md-4 col-lg-3 cr-{{case.caseRed}} rats-assigned-{{case.ratsAssigned.length !== 0}}">
             <p><strong>Board Index: </strong>#{{case.boardIndex}}<span ng-if="case.platformUnknown === true"><strong>  WARNING: PLATFORM UNKNOWN</strong></span></p>
             <p><strong>Client Name: </strong>{{case.clientNick}}</p>
             <p><strong>Client System: </strong>{{case.clientSystem}}</p>
             <p><strong>Distance To Client:  </strong>{{case.distance}}</p>
             <p><strong>Jumps To Client: </strong>{{case.jumps}}</p>
             <p><strong>Case Red: </strong><span>{{case.caseRed}}</span></p>
+            <p><strong># Rats Assigned: </strong>{{case.ratsAssigned}}</p>
         </li>
     </ul>
 

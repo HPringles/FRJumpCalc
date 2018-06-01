@@ -1,24 +1,37 @@
 html, .container {
   background-color: black !important;
   border-color: black;
-  color: yellow; }
+  color: #fbc531;
+}
+
+.blue {
+  color: #00a8ff !important;
+}
 
 .cr-Yes {
-  color: red !important; }
+  color: #c23616 !important;
+}
 
 .cr-No {
-  color: yellow; }
+  color: #fbc531;
+}
 
 .btn-danger .btn {
-  color: yellow; }
+  color: #fbc531;
+}
+
+.rats-assigned-true {
+  color: #00a8ff !important;
+}
 
 .central {
   width: 50%;
-  margin-left: 25%; }
+  margin-left: 25%;
+}
 
 .form-control, .form-control:focus {
   background-color: black;
-  border-color: yellow;
-  color: yellow; }
-
+  border-color: #fbc531;
+  color: #fbc531;
+}
 /*# sourceMappingURL=style.css.map */
