@@ -19,7 +19,7 @@
     <div class="blue text-center display-4" ng-show="cases.length === 0">No Cases Found</div>
     
     <ul class="row">
-        <li ng-repeat="case in cases track by $index" class="col-md-4 col-lg-3 cr-{{case.caseRed}} rats-assigned-{{case.ratsAssigned.length !== 0}}">
+        <li ng-repeat="case in cases track by $index" class="col-md-4 col-lg-3 cr-{{case.caseRed}} rats-assigned-{{case.ratsAssigned.length != 0}}">
             <p><strong>Board Index: </strong>#{{case.boardIndex}}<span ng-if="case.platformUnknown === true"><strong>  WARNING: PLATFORM UNKNOWN</strong></span></p>
             <p><strong>Client Name: </strong>{{case.clientNick}}</p>
             <p><strong>Client System: </strong>{{case.clientSystem}}</p>
