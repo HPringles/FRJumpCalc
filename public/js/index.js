@@ -42,7 +42,7 @@ ws.on('open', () => {
 
 
 
-function getSysInfo (sys) {
+ function getSysInfo (sys) {
     return new Promise((resolve, reject) => {
         try {
             sys = encodeURI(sys.toUpperCase())
@@ -130,20 +130,20 @@ angular.module('FRJump', [])
                 try {
 
                 if (ob.event === "FSDJump" || ob.event === "Location") {
-                    $timeout(() => {
+                    $scope.$apply(() => {
                         $scope.ratSystem = ob.StarSystem
                         ratSystem = ob.StarSystem
                     });
-
+                    console.log(ob.StarSystem)
                     getSysInfo(ratSystem).then((response) => {
                         if (response.found){
-
+                            
                             $scope.cases.forEach((caseData) => {
                                     if (caseData.systemDefined){
                                         let jumpsAndDistance = calculateJumpsAndDistance(response, caseData.clientSysData, $scope.jumpRange)
 
 
-                                        $timeout(() => {
+                                        %scope.$apply(() => {
                                             caseData.distance = jumpsAndDistance.distance
                                             caseData.jumps = jumpsAndDistance.jumps
                                         });
@@ -160,7 +160,8 @@ angular.module('FRJump', [])
                         console.error(error)
                     })
                 }
-            } catch(TypeError) {
+            } catch(e) {
+                    console.log(e)
                     console.log("not an FSDJump Event")
                 }
 
@@ -232,7 +233,7 @@ angular.module('FRJump', [])
                             })
 
                             if (caseIndex !== -1) {
-                                $timeout(() => {
+                                $scope.$apply(() => {
                                     $scope.cases.splice(caseIndex, 1)
                                 });
                             }
@@ -260,7 +261,7 @@ angular.module('FRJump', [])
 
 
                             if (caseIndex !== -1) {
-                                $timeout(() => {
+                                $scope.$apply(() => {
                                     $scope.cases.splice(caseIndex, 1)
 
                                 });
@@ -279,18 +280,18 @@ angular.module('FRJump', [])
                                     })
 
                                     if (caseIndex === -1) {
-                                        $timeout(() => {
+                                        $scope.$apply(() => {
                                             $scope.cases.push(caseData)
                                         });
                                     } else {
-                                        $timeout(() => {
+                                        $scope.$apply(() => {
                                             $scope.cases[caseIndex] = caseData
                                         });
                                     }
 
 
                                 } else {
-                                    $timeout(() => {
+                                    $scope.$apply(() => {
                                      caseData.clientSysData = response
                                     });
                                     getSysInfo(ratSystem).then((response) => {
@@ -300,7 +301,7 @@ angular.module('FRJump', [])
                                         } else {
                                             ratSysData = response
                                             let distanceAndJumps = calculateJumpsAndDistance(ratSysData, caseData.clientSysData, $scope.jumpRange)
-
+                                        
                                             caseData.distance = distanceAndJumps.distance
                                             caseData.jumps = distanceAndJumps.jumps
                                         }
@@ -313,11 +314,11 @@ angular.module('FRJump', [])
                                         })
 
                                         if (caseIndex === -1) {
-                                            $timeout(() => {
+                                            $scope.$apply(() => {
                                                 $scope.cases.push(caseData)
                                             });
                                         } else {
-                                            $timeout(() => {
+                                            $scope.$apply(() => {
                                                 $scope.cases[caseIndex] = caseData
                                             });
                                         }
